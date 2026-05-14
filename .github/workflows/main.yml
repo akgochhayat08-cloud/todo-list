@@ -19,7 +19,8 @@ jobs:
         run: |
           ls -l
           test -f index.html || (echo "index.html is missing!" && exit 1)
-
+      - name: Validate HTML
+        run:
       # 3. Try to build the Docker image
       - name: Build Docker Image
         run: docker build -t my-todo-app .
