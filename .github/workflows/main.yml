@@ -17,10 +17,13 @@ jobs:
       # 2. Check if the main files actually exist
       - name: Check for Files
         run: |
-          ls -l
+          ls -l 
           test -f index.html || (echo "index.html is missing!" && exit 1)
+          
       - name: Validate HTML
-        run:
+        run: |
+          # This uses 'htmlhint' to check for unclosed tags like your </div>
+          npx htmlhint index.html --rules "tag-pair=true"
       # 3. Try to build the Docker image
       - name: Build Docker Image
         run: docker build -t my-todo-app .
